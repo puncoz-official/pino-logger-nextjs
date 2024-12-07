@@ -1,0 +1,6 @@
+node_modules/
+dist/
+debug/
+.rollup.cache/
+*.min.js
+*.lock

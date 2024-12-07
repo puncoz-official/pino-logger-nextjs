@@ -1,0 +1,1 @@
+export { initLogger } from "@/config"
