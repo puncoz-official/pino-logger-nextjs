@@ -1,12 +1,14 @@
 import type pino from "pino"
 
+interface CustomError {
+  type: string
+  stack: string
+  message: string
+}
+
 interface Payload extends pino.LogEvent {
   messages: {
-    err: {
-      type: string
-      stack: string
-      message: string
-    }
+    err: CustomError
   }[]
 }
 

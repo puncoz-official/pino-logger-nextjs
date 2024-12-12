@@ -7,8 +7,9 @@ export const clientLogger = (): pino.Logger => {
   return pino({
     browser: {
       transmit: {
-        level: "info",
+        level: "debug",
         send: (level, logEvent) => {
+          console.log("hello from client logger")
           const logConfig = getLoggerConfig()
 
           // call the logger with the event

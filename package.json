@@ -51,10 +51,11 @@
     "clean": "del dist dist-tsup .rollup.cache debug",
     "clean:fresh": "yarn clean && del node_modules yarn.lock",
     "lint": "eslint --flag unstable_ts_config",
-    "build": "yarn clean && yarn lint && tsup"
+    "build": "yarn clean && tsup"
   },
   "peerDependencies": {
-    "pino": "^8 || ^9"
+    "pino": "^8 || ^9",
+    "pino-pretty": "^13"
   },
   "devDependencies": {
     "@eslint/compat": "^1.2.3",
@@ -71,6 +72,8 @@
     "jiti": "^2.4.1",
     "lint-staged": "^15.2.10",
     "pino": "^9.5.0",
+    "pino-abstract-transport": "^2.0.0",
+    "pino-pretty": "^13.0.0",
     "pinst": "^3.0.0",
     "prettier": "^3.4.1",
     "tsup": "^8.3.5",

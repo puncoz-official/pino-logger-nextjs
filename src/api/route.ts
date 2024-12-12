@@ -1,5 +1,5 @@
 import { logLevels } from "@/config"
-import { logger } from "@/logger"
+import { serverLogger } from "@/logger/server.logger"
 
 import type { LoggerApiRouteBody } from "#/LoggerApiRoute"
 
@@ -16,15 +16,16 @@ export const POST = async (request: Request): Promise<Response> => {
     return Response.json({ status: "error", message: `Invalid log level: ${level}` }, { status: 400 })
   }
 
-  logger
+  serverLogger()
     .child({
       ...bindings,
+      module: "browser",
+      is_client_side: true,
       x_timestamp: ts,
-      x_isFrontend: true,
       x_userAgent: request.headers.get("user-agent"),
       x_request_id: request.headers.get("x-request-id") ?? "not-set",
     })
-    [level](Array.from(messages))
+    [level](...[messages])
 
   return Response.json({ status: "ok" })
 }

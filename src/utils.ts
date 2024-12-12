@@ -21,3 +21,6 @@ export const formatClientLogMessage = (logEvent: pino.LogEvent): pino.LogEvent =
 
   return logEvent
 }
+
+// eslint-disable-next-line @typescript-eslint/no-base-to-string
+export const stringify = (obj: string | object): string => (typeof obj === "string" ? obj : String(obj))
