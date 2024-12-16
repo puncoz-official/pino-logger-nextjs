@@ -1,9 +1,8 @@
-import { logLevels } from "@/config"
-import { serverLogger } from "@/logger/server.logger"
-
 import type { LoggerApiRouteBody } from "#/LoggerApiRoute"
+import { logLevels } from "@/config"
+import pino from "pino"
 
-export const POST = async (request: Request): Promise<Response> => {
+export const loggerRoute = async (request: Request, logger: pino.Logger): Promise<Response> => {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const body: LoggerApiRouteBody = await request.json()
   const {
@@ -16,14 +15,18 @@ export const POST = async (request: Request): Promise<Response> => {
     return Response.json({ status: "error", message: `Invalid log level: ${level}` }, { status: 400 })
   }
 
-  serverLogger()
+  const forwardedIp = request.headers.get("x-forwarded-for")
+  const realIp = request.headers.get("x-real-ip")
+
+  logger
     .child({
       ...bindings,
       module: "browser",
-      is_client_side: true,
-      x_timestamp: ts,
-      x_userAgent: request.headers.get("user-agent"),
-      x_request_id: request.headers.get("x-request-id") ?? "not-set",
+      headers: request.headers,
+      client_timestamp: ts,
+      client_ip: forwardedIp ? forwardedIp.split(/, /)[0] : realIp ?? "Unknown",
+      client_userAgent: request.headers.get("user-agent"),
+      client_request_id: request.headers.get("x-request-id") ?? "not-set",
     })
     [level](...[messages])
 

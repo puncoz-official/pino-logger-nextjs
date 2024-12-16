@@ -1,84 +1,27 @@
 {
-  "name": "pino-logger-nextjs",
-  "version": "1.0.0",
-  "description": "A simple pino logger implementation for Next.js 13+ with app dir and both client & server components support.",
-  "keywords": [
-    "pino",
-    "logger",
-    "nextjs",
-    "next",
-    "app dir",
-    "client",
-    "server",
-    "components"
-  ],
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/puncoz-official/pino-logger-nextjs"
-  },
-  "bugs": {
-    "url": "https://github.com/puncoz-official/pino-logger-nextjs/issues"
-  },
-  "homepage": "https://github.com/puncoz-official/pino-logger-nextjs",
+  "name": "nextjs-logger",
   "author": {
     "name": "Puncoz Nepal",
     "url": "https://puncoz.com",
     "email": "info@puncoz.com"
   },
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "files": [
-    "dist"
+  "homepage": "https://github.com/puncoz-official/pino-logger-nextjs",
+  "private": true,
+  "workspaces": [
+    "packages/*"
   ],
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "default": "./dist/index.js"
-    }
-  },
-  "engines": {
-    "node": ">=20.12.0",
-    "npm": "please-use-yarn",
-    "yarn": ">=4.5.3"
-  },
-  "type": "module",
-  "sideEffects": false,
   "scripts": {
-    "postinstall": "husky",
-    "prepack": "pinst --disable",
-    "postpack": "pinst --disable",
-    "clean": "del dist dist-tsup .rollup.cache debug",
-    "clean:fresh": "yarn clean && del node_modules yarn.lock",
-    "lint": "eslint --flag unstable_ts_config",
-    "build": "yarn clean && tsup"
+    "clean": "lerna run clean",
+    "clean:fresh": "lerna run clean:fresh && del node_modules yarn.lock",
+    "build": "turbo run build",
+    "logger": "yarn workspace pino-logger-nextjs",
+    "transport": "yarn workspace pino-json-transport"
   },
-  "peerDependencies": {
-    "pino": "^8 || ^9",
-    "pino-pretty": "^13"
-  },
+  "packageManager": "yarn@4.5.3",
   "devDependencies": {
-    "@eslint/compat": "^1.2.3",
-    "@eslint/js": "^9.15.0",
-    "@types/node": "^22.9.3",
-    "@typescript-eslint/parser": "^8.16.0",
+    "@types/node": "^22.10.2",
     "del-cli": "^6.0.0",
-    "eslint": "^9.15.0",
-    "eslint-config-prettier": "^9.1.0",
-    "eslint-import-resolver-typescript": "^3.6.3",
-    "eslint-plugin-import": "^2.31.0",
-    "eslint-plugin-prettier": "^5.2.1",
-    "husky": "^9.1.7",
-    "jiti": "^2.4.1",
-    "lint-staged": "^15.2.10",
-    "pino": "^9.5.0",
-    "pino-abstract-transport": "^2.0.0",
-    "pino-pretty": "^13.0.0",
-    "pinst": "^3.0.0",
-    "prettier": "^3.4.1",
-    "tsup": "^8.3.5",
-    "typescript": "~5.6",
-    "typescript-eslint": "^8.15.0"
-  },
-  "packageManager": "yarn@4.5.3"
+    "lerna": "^8.1.9",
+    "typescript": "^5.7.2"
+  }
 }

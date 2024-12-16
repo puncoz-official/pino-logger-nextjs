@@ -1,0 +1,44 @@
+{
+  "name": "pino-json-transport",
+  "version": "1.0.10",
+  "description": "A Pino transport that writes to a JSON file",
+  "keywords": [
+    "pino",
+    "json",
+    "transport",
+    "logger",
+    "logging"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/puncoz-official/pino-json-transport.git"
+  },
+  "bugs": {
+    "url": "https://github.com/puncoz-official/pino-json-transport/issues"
+  },
+  "author": {
+    "name": "Puncoz Nepal",
+    "email": "info@puncoz.com",
+    "url": "https://puncoz.com"
+  },
+  "main": "dist/cjs/index.js",
+  "module": "dist/es6/index.js",
+  "types": "dist/es6/index.d.ts",
+  "scripts": {
+    "clean": "del dist",
+    "clean:fresh": "yarn clean && del node_modules yarn.lock",
+    "build:cjs": "tsc",
+    "build:es6": "tsc -p tsconfig.es6.json",
+    "build": "yarn build:cjs && yarn build:es6",
+    "prepublishOnly": "yarn build",
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "peerDependencies": {
+    "pino": "^7.0.0 || ^8.0.0 || ^9.0.0"
+  },
+  "devDependencies": {
+    "pino-abstract-transport": "^2.0.0"
+  },
+  "packageManager": "yarn@4.5.3"
+}

@@ -1,65 +1,15 @@
 {
   "compilerOptions": {
-    // basic options
-    "target": "ESNext",
-    "lib": [
-      "ESNext",
-      "dom"
-    ],
-    "module": "ESNext",
-    "moduleResolution": "node",
-    "outDir": "./dist",
-    "rootDir": "./src",
-    "baseUrl": ".",
-    "paths": {
-      "@/*": [
-        "./src/*"
-      ],
-      "#/*": [
-        "./src/@types/*"
-      ]
-    },
-    "typeRoots": [
-      "node_modules/@types",
-      "./src/@types"
-    ],
-    "types": [
-      "node"
-    ],
-    // strict type checking options
-    "strict": true,
-    "noImplicitAny": true,
-    "noImplicitThis": true,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "forceConsistentCasingInFileNames": true,
-    // source map options
-    "sourceMap": false,
-    // declaration options
+    "target": "es2017",
+    "module": "commonjs",
     "declaration": true,
-    "declarationDir": "./dist",
-    "declarationMap": true,
-    "emitDeclarationOnly": true,
-    // advanced options
-    "incremental": true,
-    "tsBuildInfoFile": "./debug/.tsbuildinfo",
-    "isolatedModules": true,
-    "skipLibCheck": false,
-    "verbatimModuleSyntax": true,
-    "useDefineForClassFields": true,
-    "exactOptionalPropertyTypes": true,
-    "resolveJsonModule": true
+    "sourceMap": true,
+    "outDir": "dist/cjs",
+    "strict": true,
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "jsx": "react"
   },
-  "include": [
-    "**/*.ts",
-  ],
-  "exclude": [
-    "node_modules",
-    "dist",
-    "dist-tsup",
-  ]
+  "include": ["./src"]
 }
